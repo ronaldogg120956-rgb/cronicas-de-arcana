@@ -220,6 +220,12 @@ curl -s https://ronaldogg120956-rgb.github.io/cronicas-de-arcana/ | grep -o "NOM
 
 ---
 
+- ✅ **v75 — Barra 1-6 deslocada para a esquerda (foto 02:11) + chat ainda mais embaixo**:
+  - **Quickbar (barra 1-6) puxada à esquerda** no deitado: `right:196px` normal (era 132), `right:166px` compacta (era 118), `right:146px` ultra (era 108) — agora a fileira termina logo abaixo dos botões E/🌌 e **não chega perto do analógico de ataque** (na foto do Ronald ela fica abaixo do E/além, começando sob o E), como ele pediu ("1 ao 5 tem que ficar igual a essa print").
+  - **Chat ainda mais embaixo**: na camada normal (tela larga, que é o caso dele) `bottom:18px` (era 62), `left:41%`, largura `min(260px,24%)` — vai para o vão central baixo, entre os botões da esquerda e a barra da direita. Nas camadas compacta (`bottom:52`, `left:44%`, 200px) e ultra (`bottom:54`, `left:45%`, 150px) ele sobe um pouco por cima da barra para não colidir quando a tela é estreita.
+  - Migração de arranjo de toque renovada para flag `arcana-touch-layout-v === 'v75'`. Geometria validada sem sobreposição de 600px a 1170px.
+  - Marcadores p/ curl: `v75 — LAYOUT PAISAGEM`, flag v75. Save 100% compatível. sw.js → `arcana-v75`.
+
 - ✅ **v74 — Arranjo paisagem FINAL (foto 01:59) + chat bem mais embaixo**:
   - **Direita vira 3 fileiras empilhadas** (antes a barra 1-6 ficava no centro-esquerda): de cima para baixo — **⇧ dash** (acima do escudo, `right:140`,`bottom:124`) · fileira **E dourado (right:262) · além 🌌 (right:200) · escudo 🛡 (right:140)** (`bottom:58–62`) · **barra de habilidades 1-6 em fileira horizontal ancorada à direita** (`right:132`,`bottom:12`, abaixo do E/além/escudo, à esquerda do analógico de ataque). Analógico de ataque continua inteiro no canto (`right:14`).
   - **Esquerda inalterada** (aprovada): analógico de andar + **pata 🐾 (left:140)** e **poção 🧪 (left:202)** à sua direita.
