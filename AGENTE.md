@@ -220,6 +220,15 @@ curl -s https://ronaldogg120956-rgb.github.io/cronicas-de-arcana/ | grep -o "NOM
 
 ---
 
+- ✅ **v73 — Layout paisagem (deitado) no arranjo escolhido pelo Ronald (foto 01:38)**:
+  - **Esquerda:** analógico de andar (110px) rente à borda; **pata 🐾 (left:140) e poção 🧪 (left:202)** ficam à direita dele (antes estavam no lado direito da tela). Ancoradas por `left` (não por `right`).
+  - **Direita:** fileira horizontal **E dourado (56px, right:262) · além 🌌 (right:200) · escudo 🛡 (right:140)** na mesma faixa (bottom ~28–34), com o **dash ⇧ acima do escudo** (bottom:92). O **analógico de ataque fica INTEIRO no canto** (right:14, 110px) — antes o arranjo personalizado do Ronald (via editor de HUD, guardado em `hudCustom.buttonPos`) o empurrava para fora da tela e cortava metade.
+  - **Barra de habilidades (1-6):** 1 fileira horizontal ancorada à **esquerda** (`left:270`, `right:auto`) → centro-baixo, entre a poção e o E, sem colidir.
+  - **Chat:** centralizado na **parte de baixo** (acima da barra), `bottom:96`, largura `min(300px,40%)`.
+  - **3 camadas por largura** (todas validadas sem sobreposição): normal (≥900px), compacta (`max-width:899px`: botões 42px, joysticks 96px), ultra (`max-width:699px`: botões 40px/30px, joysticks 88px).
+  - **Migração única (`arcana-touch-layout-v`):** ao abrir, zera SÓ o arranjo de toque personalizado (`buttonPos`, `buttonScale`, `touchScale/Opacity/Offset`) para o novo padrão não ser sobreposto nem cortar o analógico; mantém atalhos, áudio, HUD e escala da barra de habilidades.
+  - Marcadores p/ curl: `v73 — LAYOUT PAISAGEM`, `arcana-touch-layout-v`. Save 100% compatível (só CSS/UI + limpeza de preferência local). sw.js → `arcana-v73`.
+
 - ✅ **v72 — CONTROLES MOBILE REATIVADOS (bug crítico) + topo reorganizado + chat embaixo** (baseado em foto do Ronald no Chrome deitado):
   - **🐞 Bugs raiz que escondiam TODO o controle de toque:**
     1. `.touch-ui` (container de joysticks/botões) nascia com `display:none` e **nada nunca religava** — a classe `.shown` só setava transform/opacidade (sem `display`) e não era adicionada em lugar nenhum. Fix: `.touch-ui.shown{display:block;...}` + `updateMobileLayout()` agora faz `touchUI.classList.toggle('shown', show)` (show = started && touch && !paused && !dialogOpen). `updateMobileLayout()` é chamada dentro do `updateAdaptiveDOM()` (roda ~10x/s no jogo) e no `applyDeviceProfile`.
