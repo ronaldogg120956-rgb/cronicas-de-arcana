@@ -220,6 +220,12 @@ curl -s https://ronaldogg120956-rgb.github.io/cronicas-de-arcana/ | grep -o "NOM
 
 ---
 
+- ✅ **v77 — TRAVA de layout no deitado (barra 1-6 voltava para cima)**:
+  - Causa raiz: a barra 1-6 que ficava no meio da tela era o próprio `#mobileQuickbar` (DOM). O editor de HUD salva o arraste em `buttonPos.quick-*` / transform do `.touch-ui` e aplica via `el.style.translate`/`.touch-ui{transform}` (inline, aplicado por `applyHUDCustomTouch`). A CSS de posição (`right/bottom`) só move a âncora — o `translate` inline vencia o CSS (inline > stylesheet mesmo sem !important), então a barra arrastada continuava alta. O editor de HUD no celular deixa os controles vulneráveis a esse deslocamento acidental.
+  - Fix: no `@media (pointer:coarse) and (orientation:landscape)`, **trava** todo o arranjo de toque: `.touch-ui{transform:none!important}` e `.touch-ui *{translate:0 0!important;scale:1 1!important}`. Assim o deitado SEMPRE usa o layout fixo (mesma especificidade/`!important` no CSS que o inline, mas o reset zera qualquer valor salvo). Retrato (em pé) e desktop não são afetados (lá o editor segue valendo).
+  - Migração renovada para flag `arcana-touch-layout-v === 'v77'` (zera `buttonPos/buttonScale/touch*` na primeira abertura).
+  - Marcadores: `TRAVA: no deitado`, `v77 — LAYOUT PAISAGEM`. Save 100% compatível. sw.js → `arcana-v77`.
+
 - ✅ **v76 — Barra 1-6 volta para embaixo do E/escudo, rente ao analógico (foto 08:20) + chat centralizado e baixo**:
   - **Quickbar reposicionado para o padrão desejado** (na foto 1 ela estava ALTA, na foto 2 o Ronald mostrou onde quer): `right:132px` normal (embaixo do E/além/escudo e imediatamente à esquerda do analógico de ataque), `right:118px` compacta, `right:108px` ultra. (A v75 tinha puxado para 196/166/146, ficando longe do analógico.) A barra estava alta porque o Ronald a arrastara no editor de HUD (buttonPos salvo) — a migração `arcana-touch-layout-v === 'v76'` zera essas posições arrastadas para o padrão travar.
   - **Chat centralizado e embaixo** ("no meio, alinhado, pode pôr mais embaixo"): na camada normal `left:50%` (centro de verdade), `bottom:16px`, largura `min(280px,25%)`; quando aberto sobe para `bottom:66px`. Compacta (`bottom:48`, 26%) e ultra (`bottom:50`, 22%) sobem só um pouco para não encostar na barra em telas estreitas.

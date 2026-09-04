@@ -233,7 +233,7 @@ button[aria-label*="ocultar"] { position: fixed !important; top: 66px !important
 body.device-mobile .chat-dock { bottom: 38px !important; }
 
     /* ============================================================
-       v76 — LAYOUT PAISAGEM (deitado), arranjo final aprovado:
+       v77 — LAYOUT PAISAGEM (deitado), arranjo final aprovado:
        ESQUERDA: analógico de andar + pata 🐾 e poção 🧪 a sua direita.
        DIREITA (3 fileiras): ⇧ dash em cima · E·🌌·🛡 no meio · barra 1-6
                  embaixo; analógico de ataque inteiro no canto.
@@ -241,6 +241,13 @@ body.device-mobile .chat-dock { bottom: 38px !important; }
        Não mexe no modo retrato (em pé) nem no desktop.
        ============================================================ */
     @media (pointer:coarse) and (orientation:landscape){
+      /* TRAVA: no deitado, ignora QUALQUER posição arrastada no editor de HUD
+         (senão a barra/ botões somem ou vão pro meio da tela). Manda o layout fixo. */
+      body.device-mobile.orientation-landscape .touch-ui,
+      body.device-tablet.orientation-landscape .touch-ui{transform:none!important}
+      body.device-mobile.orientation-landscape .touch-ui *,
+      body.device-tablet.orientation-landscape .touch-ui *{translate:0 0!important;scale:1 1!important}
+
       .joystick{width:110px!important;height:110px!important;left:14px!important;bottom:calc(12px + env(safe-area-inset-bottom,0px))!important;right:auto!important}
       .attack-joystick{width:110px!important;height:110px!important;right:14px!important;left:auto!important;bottom:calc(12px + env(safe-area-inset-bottom,0px))!important}
       .joy-stick{width:48px;height:48px}
@@ -1216,10 +1223,10 @@ function updateLivingWorld(dt){livingWorld.clock=(livingWorld.clock||0)+dt;refre
       // v73: zera só o arranjo de botões de toque (posição/tamanho/deslocamento)
       // para o novo layout deitado não ser empurrado pelo arranjo antigo (que cortava o analógico).
       // Mantém atalhos, áudio, HUD e escala/transparência da barra de habilidades.
-      try{if(localStorage.getItem('arcana-touch-layout-v')!=='v76'){
+      try{if(localStorage.getItem('arcana-touch-layout-v')!=='v77'){
         hudCustom.buttonPos={};hudCustom.buttonScale={};
         hudCustom.touchScale=1;hudCustom.touchOpacity=1;hudCustom.touchOffsetX=0;hudCustom.touchOffsetY=0;
-        localStorage.setItem('arcana-touch-layout-v','v76');
+        localStorage.setItem('arcana-touch-layout-v','v77');
         savePreferences();
       }}catch(e){}
     }catch(e){try{console.error('loadPreferences falhou:',e);}catch(e2){}}}
