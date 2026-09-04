@@ -220,6 +220,16 @@ curl -s https://ronaldogg120956-rgb.github.io/cronicas-de-arcana/ | grep -o "NOM
 
 ---
 
+- ✅ **v71 — Layout Mobile PAISAGEM (deitado) redesenhado, sem sobreposições**:
+  - Bloco CSS novo `/* v71 — LAYOUT MOBILE PAISAGEM */` dentro do `<style>` (logo antes do fim), com `@media (pointer:coarse) and (orientation:landscape)`. **Não toca no modo retrato (em pé) nem no desktop.**
+  - **Controles todos numa faixa baixa e fáceis de alcançar** no modo deitado: joysticks menores (116px; 104px no ultracompacto) e rentes ao rodapé com `env(safe-area-inset-bottom)`; botão **E** dourado colado acima do joystick de ataque (right:46, bottom:128); leque de ações em 2 colunas à esquerda do joystick (dash ⇧ / além 🌌 na coluna de baixo e cima; poção 🧪 e escudo 🛡/🔮 na coluna ao lado). Antes os botões subiam até bottom:198–252, ficando perto do topo e fora do alcance do polegar em telas baixas.
+  - **Companhia 🐾 em altura própria** (3ª fileira, bottom:128 normal / 116 compacto): Necromante e Invocador têm escudo de mana 🔮 **e** pet 🐾 ao mesmo tempo — antes os dois caíam na mesma posição e se sobrepunham.
+  - **Barra de habilidades vira 1 fileira horizontal** ancorada à direita (à esquerda do leque de ações): `grid-template-columns:repeat(6,42px)` (38px no compacto), sem mais quebrar em grade 3×2 que colidia com os botões.
+  - **Chat (dock) sobe para o TOPO central no deitado** (`top:8px`, largura `min(340px,46%)`), liberando 100% da faixa inferior para jogar — antes ele ficava no centro-embaixo (92% de largura) e caía em cima de joystick/botões em telas baixas. Log limitado a ~30vh.
+  - **Camada ultracompacta** para celular deitado baixo/estreito (`max-width:700px` ou `max-height:340px`): botões 44px, joysticks 104px, quickbar 38px — verificada sem sobreposição até 590×300.
+  - Verificação de geometria (script Node que simula os retângulos): **0 sobreposições e nada fora da tela** em 900×420, 850×400, 740×360, 660×360, 620×320 e 590×300, inclusive com TODOS os botões visíveis (Invocador nv15+).
+  - Marcadores p/ curl: `v71 — LAYOUT MOBILE PAISAGEM`, `Chat: sobe para o TOPO`. Save 100% compatível (só CSS). sw.js → `arcana-v71`.
+
 - ✅ **v70 — HUD Mobile Twin-Stick Perfeito, Botão "E" & Minimapa Desacoplado**:
   - Aba flutuante do minimapa (`#minimapTab`) movida para o cabeçalho superior ao lado do botão `[☰ Menu]`, eliminando 100% de qualquer sobreposição visual no mapa.
   - Botão de Interação **"E"** (`#interactTouch`) posicionado em destaque dourado logo acima do analógico de ataque (fácil alcance do polegar direito para falar com NPCs, abrir baús e coletar).

@@ -230,6 +230,68 @@ button[aria-label*="ocultar"] { position: fixed !important; top: 66px !important
   
 
 body.device-mobile .chat-dock { bottom: 38px !important; }
+
+    /* ============================================================
+       v71 — LAYOUT MOBILE PAISAGEM (deitado): controles compactos,
+       todos numa faixa baixa e fáceis de alcançar; chat sobe p/ topo.
+       Não mexe no modo retrato (em pé) nem no desktop.
+       ============================================================ */
+    @media (pointer:coarse) and (orientation:landscape){
+      /* Joysticks um pouco menores e rentes à borda de baixo */
+      .joystick{width:116px!important;height:116px!important;left:14px!important;bottom:calc(12px + env(safe-area-inset-bottom,0px))!important}
+      .attack-joystick{width:116px!important;height:116px!important;right:14px!important;bottom:calc(12px + env(safe-area-inset-bottom,0px))!important;left:auto!important}
+      .joy-stick{width:50px;height:50px}
+      .joy-stick-attack:before{font-size:20px}
+
+      /* Botão "E" (interagir) — colado acima do joystick de ataque */
+      #interactTouch{width:54px!important;height:54px!important;font-size:21px!important;right:46px!important;bottom:calc(128px + env(safe-area-inset-bottom,0px))!important}
+
+      /* Leque de ações à ESQUERDA do joystick de ataque (2 colunas) */
+      #dashTouch{width:48px!important;height:48px!important;right:138px!important;bottom:calc(14px + env(safe-area-inset-bottom,0px))!important}
+      #beyondPowerTouch{width:48px!important;height:48px!important;right:138px!important;bottom:calc(70px + env(safe-area-inset-bottom,0px))!important}
+      #healTouch{width:48px!important;height:48px!important;right:194px!important;bottom:calc(14px + env(safe-area-inset-bottom,0px))!important}
+      #guardTouch{width:48px!important;height:48px!important;right:194px!important;bottom:calc(70px + env(safe-area-inset-bottom,0px))!important}
+      /* Companhia fica numa 3ª altura (Necromante/Invocador têm escudo + pet) */
+      #companionTouch{width:48px!important;height:48px!important;right:194px!important;bottom:calc(126px + env(safe-area-inset-bottom,0px))!important}
+
+      /* Barra de habilidades: vira 1 fileira horizontal, rente à direita
+         (à esquerda do leque de ações), sem sobrepor nada */
+      .mobile-quickbar{left:auto!important;right:252px!important;bottom:calc(14px + env(safe-area-inset-bottom,0px))!important;grid-template-columns:repeat(6,42px)!important;grid-auto-rows:42px!important;gap:5px!important;width:auto!important}
+      .quick-slot{width:42px!important;height:42px!important}
+      .quick-slot .quick-icon{font-size:17px}
+
+      /* Chat: sobe para o TOPO central (a faixa de baixo fica livre p/ jogar) */
+      body.device-mobile.orientation-landscape .chat-dock,
+      body.device-tablet.orientation-landscape .chat-dock{
+        top:calc(8px + env(safe-area-inset-top,0px))!important;
+        bottom:auto!important;
+        left:50%!important;
+        transform:translateX(-50%)!important;
+        width:min(340px,46%)!important;
+      }
+      body.device-mobile.orientation-landscape .chat-dock.open{bottom:auto!important}
+      .chat-dock-log{max-height:min(120px,30vh)!important}
+    }
+    /* Telas deitadas bem pequenas (celular baixo/estreito): ultracompacto
+       p/ nada encostar no joystick de movimento */
+    @media (pointer:coarse) and (orientation:landscape) and (max-width:700px),
+           (pointer:coarse) and (orientation:landscape) and (max-height:340px){
+      .joystick,.attack-joystick{width:104px!important;height:104px!important}
+      .joystick{left:10px!important;bottom:calc(10px + env(safe-area-inset-bottom,0px))!important}
+      .attack-joystick{right:10px!important;bottom:calc(10px + env(safe-area-inset-bottom,0px))!important;left:auto!important}
+      .joy-stick{width:46px;height:46px}
+      #interactTouch{width:50px!important;height:50px!important;font-size:20px!important;right:40px!important;bottom:calc(118px + env(safe-area-inset-bottom,0px))!important}
+      #dashTouch,#beyondPowerTouch,#healTouch,#guardTouch,#companionTouch{width:44px!important;height:44px!important;font-size:16px!important}
+      #dashTouch{right:120px!important;bottom:calc(12px + env(safe-area-inset-bottom,0px))!important}
+      #beyondPowerTouch{right:120px!important;bottom:calc(64px + env(safe-area-inset-bottom,0px))!important}
+      #healTouch{right:172px!important;bottom:calc(12px + env(safe-area-inset-bottom,0px))!important}
+      #guardTouch{right:172px!important;bottom:calc(64px + env(safe-area-inset-bottom,0px))!important}
+      #companionTouch{right:172px!important;bottom:calc(116px + env(safe-area-inset-bottom,0px))!important}
+      .mobile-quickbar{right:224px!important;bottom:calc(12px + env(safe-area-inset-bottom,0px))!important;grid-template-columns:repeat(6,38px)!important;grid-auto-rows:38px!important;gap:4px!important}
+      .quick-slot{width:38px!important;height:38px!important}
+      .quick-slot .quick-icon{font-size:16px}
+      .chat-dock-log{max-height:96px!important}
+    }
 </style>
 </head>
 <body>
