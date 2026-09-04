@@ -220,6 +220,18 @@ curl -s https://ronaldogg120956-rgb.github.io/cronicas-de-arcana/ | grep -o "NOM
 
 ---
 
+- ✅ **v72 — CONTROLES MOBILE REATIVADOS (bug crítico) + topo reorganizado + chat embaixo** (baseado em foto do Ronald no Chrome deitado):
+  - **🐞 Bugs raiz que escondiam TODO o controle de toque:**
+    1. `.touch-ui` (container de joysticks/botões) nascia com `display:none` e **nada nunca religava** — a classe `.shown` só setava transform/opacidade (sem `display`) e não era adicionada em lugar nenhum. Fix: `.touch-ui.shown{display:block;...}` + `updateMobileLayout()` agora faz `touchUI.classList.toggle('shown', show)` (show = started && touch && !paused && !dialogOpen). `updateMobileLayout()` é chamada dentro do `updateAdaptiveDOM()` (roda ~10x/s no jogo) e no `applyDeviceProfile`.
+    2. **Analógico de ataque (twin-stick) estava incompleto**: o `#attackJoystick` nascia com `hidden` e NÃO tinha nenhum handler de toque nem disparava (só o de movimento tinha IIFE). Fix: novo IIFE espelhando o de movimento (mira 360°, `attackJoystick.dx/dy/active`), `updateMobileLayout` remove o `hidden` em tela de toque, e no `update()` (ao decrementar `attackCd`) **dispara sozinho** enquanto o analógico é arrastado (`hypot(dx,dy)>.25`). `getAim()` já lia esse vetor (só faltava alimentá-lo).
+    3. Regra `.mobile-quickbar{display:block!important}` (mobile) forçava a barra de habilidades para bloco vertical; separada em `.mobile-smart-actions{display:block}` e `.mobile-quickbar{display:grid}`.
+  - **Menu ☰ não fica mais em cima da vida (topo-esq):** `.device-menu-btn` não tinha `position` (as coords right/top eram ignoradas → caía no fluxo normal, no canto superior esquerdo sobre o HUD de vida). Agora `position:fixed!important;z-index:100002;...` → vai para o **topo direito**.
+  - **Botão do mapa (🗺️ Ocultar) agrupado ao lado do Menu, no topo** (`#minimapTab`: `top:10px`, `right:108px`, z 100002; media ≤520px ajustada p/ `right:104px`) — não flutua mais sobre o minimapa.
+  - **Minimapa desce no deitado** para não ficar sob os botões do topo: helper `minimapTop()` = touch+landscape ? **108** : 60; usado no `drawMinimap()` e nas DUAS áreas de clique/zoom (mouse e toque, antes fixas em `py>=58&&py<=198`, agora `minimapTop()-2 … +142`). Abaixa dentro dos 540px internos (em paisagem H=540 fixo), ficando logo abaixo da faixa de botões.
+  - **Chat volta para BAIXO no deitado** (Ronald pediu): `bottom:118px` (fechado) / `128px` (aberto), centralizado, largura `min(330px,46%)` — acima da faixa de controles para não encostar nos botões; log limitado a ~26vh. (Antes a v71 tinha jogado o chat no topo.)
+  - **Posições dos botões (faixa baixa, da v71) mantidas** e validadas sem sobreposição.
+  - Marcadores p/ curl: `Analógico de Ataque (twin-stick)`, `CONTROLES MOBILE REATIVADOS`, `minimapTop`. Save 100% compatível (só CSS/UI + lógica de input; nenhum campo de save novo). sw.js → `arcana-v72`.
+
 - ✅ **v71 — Layout Mobile PAISAGEM (deitado) redesenhado, sem sobreposições**:
   - Bloco CSS novo `/* v71 — LAYOUT MOBILE PAISAGEM */` dentro do `<style>` (logo antes do fim), com `@media (pointer:coarse) and (orientation:landscape)`. **Não toca no modo retrato (em pé) nem no desktop.**
   - **Controles todos numa faixa baixa e fáceis de alcançar** no modo deitado: joysticks menores (116px; 104px no ultracompacto) e rentes ao rodapé com `env(safe-area-inset-bottom)`; botão **E** dourado colado acima do joystick de ataque (right:46, bottom:128); leque de ações em 2 colunas à esquerda do joystick (dash ⇧ / além 🌌 na coluna de baixo e cima; poção 🧪 e escudo 🛡/🔮 na coluna ao lado). Antes os botões subiam até bottom:198–252, ficando perto do topo e fora do alcance do polegar em telas baixas.
