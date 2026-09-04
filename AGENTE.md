@@ -220,6 +220,11 @@ curl -s https://ronaldogg120956-rgb.github.io/cronicas-de-arcana/ | grep -o "NOM
 
 ---
 
+- ✅ **v76 — Barra 1-6 volta para embaixo do E/escudo, rente ao analógico (foto 08:20) + chat centralizado e baixo**:
+  - **Quickbar reposicionado para o padrão desejado** (na foto 1 ela estava ALTA, na foto 2 o Ronald mostrou onde quer): `right:132px` normal (embaixo do E/além/escudo e imediatamente à esquerda do analógico de ataque), `right:118px` compacta, `right:108px` ultra. (A v75 tinha puxado para 196/166/146, ficando longe do analógico.) A barra estava alta porque o Ronald a arrastara no editor de HUD (buttonPos salvo) — a migração `arcana-touch-layout-v === 'v76'` zera essas posições arrastadas para o padrão travar.
+  - **Chat centralizado e embaixo** ("no meio, alinhado, pode pôr mais embaixo"): na camada normal `left:50%` (centro de verdade), `bottom:16px`, largura `min(280px,25%)`; quando aberto sobe para `bottom:66px`. Compacta (`bottom:48`, 26%) e ultra (`bottom:50`, 22%) sobem só um pouco para não encostar na barra em telas estreitas.
+  - Geometria validada sem sobreposição. Marcadores: `v76 — LAYOUT PAISAGEM`, flag v76. Save 100% compatível. sw.js → `arcana-v76`.
+
 - ✅ **v75 — Barra 1-6 deslocada para a esquerda (foto 02:11) + chat ainda mais embaixo**:
   - **Quickbar (barra 1-6) puxada à esquerda** no deitado: `right:196px` normal (era 132), `right:166px` compacta (era 118), `right:146px` ultra (era 108) — agora a fileira termina logo abaixo dos botões E/🌌 e **não chega perto do analógico de ataque** (na foto do Ronald ela fica abaixo do E/além, começando sob o E), como ele pediu ("1 ao 5 tem que ficar igual a essa print").
   - **Chat ainda mais embaixo**: na camada normal (tela larga, que é o caso dele) `bottom:18px` (era 62), `left:41%`, largura `min(260px,24%)` — vai para o vão central baixo, entre os botões da esquerda e a barra da direita. Nas camadas compacta (`bottom:52`, `left:44%`, 200px) e ultra (`bottom:54`, `left:45%`, 150px) ele sobe um pouco por cima da barra para não colidir quando a tela é estreita.
