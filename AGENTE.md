@@ -220,6 +220,14 @@ curl -s https://ronaldogg120956-rgb.github.io/cronicas-de-arcana/ | grep -o "NOM
 
 ---
 
+- ✅ **v74 — Arranjo paisagem FINAL (foto 01:59) + chat bem mais embaixo**:
+  - **Direita vira 3 fileiras empilhadas** (antes a barra 1-6 ficava no centro-esquerda): de cima para baixo — **⇧ dash** (acima do escudo, `right:140`,`bottom:124`) · fileira **E dourado (right:262) · além 🌌 (right:200) · escudo 🛡 (right:140)** (`bottom:58–62`) · **barra de habilidades 1-6 em fileira horizontal ancorada à direita** (`right:132`,`bottom:12`, abaixo do E/além/escudo, à esquerda do analógico de ataque). Analógico de ataque continua inteiro no canto (`right:14`).
+  - **Esquerda inalterada** (aprovada): analógico de andar + **pata 🐾 (left:140)** e **poção 🧪 (left:202)** à sua direita.
+  - **Chat BEM mais embaixo e mais estreito**: `bottom:62`, `left:46%` (ligeiramente à esquerda do centro, assim não encosta nos botões da direita), largura `min(280px,30%)`; log ~22vh. (Antes estava em `bottom:96`, largo 40% — o Ronald pediu "muito mais em baixo".)
+  - 3 camadas por largura: normal ≥900, compacta ≤899 (botões 42px / quickbar 34px / chat `bottom:56`), ultra ≤699 (40/30px / chat `bottom:50`). Validadas sem sobreposição até ~640px.
+  - Migração de arranjo de toque renovada para a flag `arcana-touch-layout-v === 'v74'` (zera buttonPos/buttonScale/touch* uma vez).
+  - Marcadores p/ curl: `v74 — LAYOUT PAISAGEM`, `arcana-touch-layout-v` (v74). Save 100% compatível. sw.js → `arcana-v74`.
+
 - ✅ **v73 — Layout paisagem (deitado) no arranjo escolhido pelo Ronald (foto 01:38)**:
   - **Esquerda:** analógico de andar (110px) rente à borda; **pata 🐾 (left:140) e poção 🧪 (left:202)** ficam à direita dele (antes estavam no lado direito da tela). Ancoradas por `left` (não por `right`).
   - **Direita:** fileira horizontal **E dourado (56px, right:262) · além 🌌 (right:200) · escudo 🛡 (right:140)** na mesma faixa (bottom ~28–34), com o **dash ⇧ acima do escudo** (bottom:92). O **analógico de ataque fica INTEIRO no canto** (right:14, 110px) — antes o arranjo personalizado do Ronald (via editor de HUD, guardado em `hudCustom.buttonPos`) o empurrava para fora da tela e cortava metade.

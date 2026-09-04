@@ -233,61 +233,61 @@ button[aria-label*="ocultar"] { position: fixed !important; top: 66px !important
 body.device-mobile .chat-dock { bottom: 38px !important; }
 
     /* ============================================================
-       v73 — LAYOUT PAISAGEM (deitado) estilo foto do Ronald:
-       ESQUERDA: analógico de andar + pata 🐾 e poção 🧪 à direita dele.
-       DIREITA:  E dourado · além 🌌 · escudo 🛡 numa fileira, dash ⇧ acima
-                 do escudo; analógico de ataque inteiro no canto (não corta).
-       BAIXO:    barra de habilidades (1-6) em fileira horizontal.
-       CHAT:     centralizado na parte de baixo (acima da barra).
+       v74 — LAYOUT PAISAGEM (deitado), arranjo final aprovado:
+       ESQUERDA: analógico de andar + pata 🐾 e poção 🧪 a sua direita.
+       DIREITA (3 fileiras): ⇧ dash em cima · E·🌌·🛡 no meio · barra 1-6
+                 embaixo; analógico de ataque inteiro no canto.
+       CHAT: bem embaixo, no centro (ligeiramente à esquerda).
        Não mexe no modo retrato (em pé) nem no desktop.
        ============================================================ */
     @media (pointer:coarse) and (orientation:landscape){
-      /* Joysticks: movem à esq., ataque inteiro à dir. (rentes à borda) */
       .joystick{width:110px!important;height:110px!important;left:14px!important;bottom:calc(12px + env(safe-area-inset-bottom,0px))!important;right:auto!important}
       .attack-joystick{width:110px!important;height:110px!important;right:14px!important;left:auto!important;bottom:calc(12px + env(safe-area-inset-bottom,0px))!important}
       .joy-stick{width:48px;height:48px}
       .joy-stick-attack:before{font-size:20px}
 
-      /* ESQUERDA: pata e poção logo à direita do analógico de andar */
+      /* ESQUERDA: pata e poção à direita do analógico de andar */
       #companionTouch{width:50px!important;height:50px!important;font-size:20px!important;left:140px!important;right:auto!important;bottom:calc(14px + env(safe-area-inset-bottom,0px))!important}
       #healTouch{width:50px!important;height:50px!important;font-size:18px!important;left:202px!important;right:auto!important;bottom:calc(14px + env(safe-area-inset-bottom,0px))!important}
 
-      /* DIREITA: fileira E · além · escudo (da esquerda p/ a direita), antes do analógico */
-      #guardTouch{width:50px!important;height:50px!important;font-size:20px!important;right:140px!important;left:auto!important;bottom:calc(34px + env(safe-area-inset-bottom,0px))!important}
-      #beyondPowerTouch{width:50px!important;height:50px!important;font-size:20px!important;right:200px!important;left:auto!important;bottom:calc(34px + env(safe-area-inset-bottom,0px))!important}
-      #interactTouch{width:56px!important;height:56px!important;font-size:23px!important;right:262px!important;left:auto!important;bottom:calc(28px + env(safe-area-inset-bottom,0px))!important}
-      /* Dash acima do escudo */
-      #dashTouch{width:50px!important;height:50px!important;font-size:20px!important;right:140px!important;left:auto!important;bottom:calc(92px + env(safe-area-inset-bottom,0px))!important}
+      /* DIREITA: fileira do meio E · além · escudo (acima da barra de habilidades) */
+      #guardTouch{width:50px!important;height:50px!important;font-size:20px!important;right:140px!important;left:auto!important;bottom:calc(62px + env(safe-area-inset-bottom,0px))!important}
+      #beyondPowerTouch{width:50px!important;height:50px!important;font-size:20px!important;right:200px!important;left:auto!important;bottom:calc(62px + env(safe-area-inset-bottom,0px))!important}
+      #interactTouch{width:56px!important;height:56px!important;font-size:23px!important;right:262px!important;left:auto!important;bottom:calc(58px + env(safe-area-inset-bottom,0px))!important}
+      /* Dash em cima do escudo */
+      #dashTouch{width:50px!important;height:50px!important;font-size:20px!important;right:140px!important;left:auto!important;bottom:calc(124px + env(safe-area-inset-bottom,0px))!important}
 
-      /* Barra de habilidades: 1 fileira horizontal, ancorada à ESQUERDA (centro-baixo) */
-      .mobile-quickbar{left:270px!important;right:auto!important;bottom:calc(14px + env(safe-area-inset-bottom,0px))!important;grid-template-columns:repeat(6,40px)!important;grid-auto-rows:40px!important;grid-template-rows:40px!important;gap:5px!important;width:auto!important}
+      /* Barra de habilidades: 1 fileira, embaixo à direita (abaixo do E/além/escudo) */
+      .mobile-quickbar{left:auto!important;right:132px!important;bottom:calc(12px + env(safe-area-inset-bottom,0px))!important;grid-template-columns:repeat(6,40px)!important;grid-auto-rows:40px!important;grid-template-rows:40px!important;gap:5px!important;width:auto!important}
       .quick-slot{width:40px!important;height:40px!important}
       .quick-slot .quick-icon{font-size:16px}
 
-      /* Chat: centralizado na parte de baixo (acima da barra de habilidades) */
+      /* Chat: BEM embaixo, centralizado (ligeiramente à esquerda p/ não encostar nos botões) */
       body.device-mobile.orientation-landscape .chat-dock,
       body.device-tablet.orientation-landscape .chat-dock{
-        top:auto!important;bottom:calc(96px + env(safe-area-inset-bottom,0px))!important;
-        left:50%!important;right:auto!important;transform:translateX(-50%)!important;
-        width:min(300px,40%)!important;max-width:40%!important;
+        top:auto!important;bottom:calc(62px + env(safe-area-inset-bottom,0px))!important;
+        left:46%!important;right:auto!important;transform:translateX(-50%)!important;
+        width:min(280px,30%)!important;max-width:30%!important;
       }
       body.device-mobile.orientation-landscape .chat-dock.open,
-      body.device-tablet.orientation-landscape .chat-dock.open{bottom:calc(104px + env(safe-area-inset-bottom,0px))!important}
-      .chat-dock-log{max-height:min(104px,24vh)!important}
+      body.device-tablet.orientation-landscape .chat-dock.open{bottom:calc(66px + env(safe-area-inset-bottom,0px))!important}
+      .chat-dock-log{max-height:min(96px,22vh)!important}
     }
-    /* Camada compacta (celular deitado com tela até ~899px de largura) */
+    /* Camada compacta (celular deitado até ~899px de largura) */
     @media (pointer:coarse) and (orientation:landscape) and (max-width:899px){
       .joystick,.attack-joystick{width:96px!important;height:96px!important}
       .joy-stick{width:42px;height:42px}
       #companionTouch{width:42px!important;height:42px!important;left:112px!important}
       #healTouch{width:42px!important;height:42px!important;left:162px!important}
-      #guardTouch{width:42px!important;height:42px!important;right:116px!important}
-      #beyondPowerTouch{width:42px!important;height:42px!important;right:166px!important}
-      #interactTouch{width:50px!important;height:50px!important;font-size:21px!important;right:218px!important}
-      #dashTouch{width:42px!important;height:42px!important;right:116px!important;bottom:calc(82px + env(safe-area-inset-bottom,0px))!important}
-      .mobile-quickbar{left:220px!important;grid-template-columns:repeat(6,34px)!important;grid-auto-rows:34px!important;grid-template-rows:34px!important;gap:4px!important}
+      #guardTouch{width:42px!important;height:42px!important;right:116px!important;bottom:calc(56px + env(safe-area-inset-bottom,0px))!important}
+      #beyondPowerTouch{width:42px!important;height:42px!important;right:166px!important;bottom:calc(56px + env(safe-area-inset-bottom,0px))!important}
+      #interactTouch{width:50px!important;height:50px!important;font-size:21px!important;right:218px!important;bottom:calc(52px + env(safe-area-inset-bottom,0px))!important}
+      #dashTouch{width:42px!important;height:42px!important;right:116px!important;bottom:calc(106px + env(safe-area-inset-bottom,0px))!important}
+      .mobile-quickbar{right:118px!important;grid-template-columns:repeat(6,34px)!important;grid-auto-rows:34px!important;grid-template-rows:34px!important;gap:4px!important}
       .quick-slot{width:34px!important;height:34px!important}
       .quick-slot .quick-icon{font-size:14px}
+      body.device-mobile.orientation-landscape .chat-dock,
+      body.device-tablet.orientation-landscape .chat-dock{bottom:calc(56px + env(safe-area-inset-bottom,0px))!important;width:min(260px,30%)!important}
     }
     /* Camada ultracompacta (tela deitada muito estreita, <700px) */
     @media (pointer:coarse) and (orientation:landscape) and (max-width:699px){
@@ -295,13 +295,15 @@ body.device-mobile .chat-dock { bottom: 38px !important; }
       .joy-stick{width:38px;height:38px}
       #companionTouch{width:40px!important;height:40px!important;left:106px!important}
       #healTouch{width:40px!important;height:40px!important;left:154px!important}
-      #guardTouch{width:40px!important;height:40px!important;right:106px!important}
-      #beyondPowerTouch{width:40px!important;height:40px!important;right:152px!important}
-      #interactTouch{width:44px!important;height:44px!important;font-size:19px!important;right:200px!important}
-      #dashTouch{width:40px!important;height:40px!important;right:106px!important}
-      .mobile-quickbar{left:198px!important;grid-template-columns:repeat(6,30px)!important;grid-auto-rows:30px!important;grid-template-rows:30px!important;gap:3px!important}
+      #guardTouch{width:40px!important;height:40px!important;right:106px!important;bottom:calc(52px + env(safe-area-inset-bottom,0px))!important}
+      #beyondPowerTouch{width:40px!important;height:40px!important;right:152px!important;bottom:calc(52px + env(safe-area-inset-bottom,0px))!important}
+      #interactTouch{width:44px!important;height:44px!important;font-size:19px!important;right:200px!important;bottom:calc(50px + env(safe-area-inset-bottom,0px))!important}
+      #dashTouch{width:40px!important;height:40px!important;right:106px!important;bottom:calc(100px + env(safe-area-inset-bottom,0px))!important}
+      .mobile-quickbar{right:108px!important;grid-template-columns:repeat(6,30px)!important;grid-auto-rows:30px!important;grid-template-rows:30px!important;gap:3px!important}
       .quick-slot{width:30px!important;height:30px!important}
-      .chat-dock-log{max-height:88px!important}
+      body.device-mobile.orientation-landscape .chat-dock,
+      body.device-tablet.orientation-landscape .chat-dock{bottom:calc(50px + env(safe-area-inset-bottom,0px))!important;width:min(230px,30%)!important}
+      .chat-dock-log{max-height:84px!important}
     }
 </style>
 </head>
@@ -1213,10 +1215,10 @@ function updateLivingWorld(dt){livingWorld.clock=(livingWorld.clock||0)+dt;refre
       // v73: zera só o arranjo de botões de toque (posição/tamanho/deslocamento)
       // para o novo layout deitado não ser empurrado pelo arranjo antigo (que cortava o analógico).
       // Mantém atalhos, áudio, HUD e escala/transparência da barra de habilidades.
-      try{if(localStorage.getItem('arcana-touch-layout-v')!=='v73'){
+      try{if(localStorage.getItem('arcana-touch-layout-v')!=='v74'){
         hudCustom.buttonPos={};hudCustom.buttonScale={};
         hudCustom.touchScale=1;hudCustom.touchOpacity=1;hudCustom.touchOffsetX=0;hudCustom.touchOffsetY=0;
-        localStorage.setItem('arcana-touch-layout-v','v73');
+        localStorage.setItem('arcana-touch-layout-v','v74');
         savePreferences();
       }}catch(e){}
     }catch(e){try{console.error('loadPreferences falhou:',e);}catch(e2){}}}
